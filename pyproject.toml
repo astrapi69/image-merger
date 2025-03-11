@@ -1,14 +1,27 @@
 [tool.poetry]
-name = "java-python-poetry-template"
+name = "image-merger"
 version = "0.1.0"
 description = ""
 authors = ["Asterios Raptis <asteri.raptis@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = ">=3.9,<4.0"
+pypdf2 = "^3.0.1"
+reportlab = "^4.3.1"
+pillow = "^11.1.0"
 
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+pypdf2 = "^3.0.1"
+reportlab = "^4.3.1"
+pillow = "^11.1.0"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+packages = [
+    { include = "mergeimg", from = "src/main/python"},
+]

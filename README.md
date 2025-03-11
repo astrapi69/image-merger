@@ -1,21 +1,20 @@
-# Java-Python Poetry Template
 
 <div style="text-align: center">
 
-[![Build Status](https://github.com/astrapi69/java-python-poetry-template/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/java-python-poetry-template/actions/workflows/gradle.yml)
-[![Coverage Status](https://codecov.io/gh/astrapi69/java-python-poetry-template/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/java-python-poetry-template)
-[![Open Issues](https://img.shields.io/github/issues/astrapi69/java-python-poetry-template.svg?style=flat)](https://github.com/astrapi69/java-python-poetry-template/issues)
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/java-python-poetry-template?style=plastic)](https://search.maven.org/artifact/io.github.astrapi69/java-python-poetry-template)
-[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/java-python-poetry-template.svg)](http://www.javadoc.io/doc/io.github.astrapi69/java-python-poetry-template)
+[![Build Status](https://github.com/astrapi69/image-merger/actions/workflows/gradle.yml/badge.svg)](https://github.com/astrapi69/image-merger/actions/workflows/gradle.yml)
+[![Coverage Status](https://codecov.io/gh/astrapi69/image-merger/branch/develop/graph/badge.svg)](https://codecov.io/gh/astrapi69/image-merger)
+[![Open Issues](https://img.shields.io/github/issues/astrapi69/image-merger.svg?style=flat)](https://github.com/astrapi69/image-merger/issues)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/image-merger?style=plastic)](https://search.maven.org/artifact/io.github.astrapi69/image-merger)
+[![Javadocs](http://www.javadoc.io/badge/io.github.astrapi69/image-merger.svg)](http://www.javadoc.io/doc/io.github.astrapi69/image-merger)
 [![MIT License](http://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat)](http://opensource.org/licenses/MIT)
 [![Donate](https://img.shields.io/badge/donate-❤-ff2244.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GVBTWLRAZ7HB8)
-[![Hits Of Code](https://hitsofcode.com/github/astrapi69/java-python-poetry-template?branch=develop)](https://hitsofcode.com/github/astrapi69/java-python-poetry-template/view?branch=develop)
+[![Hits Of Code](https://hitsofcode.com/github/astrapi69/image-merger?branch=develop)](https://hitsofcode.com/github/astrapi69/image-merger/view?branch=develop)
 
 </div>
 
 ## Overview
 
-A template repository for Java and Python projects using Gradle and Poetry. The Java project is configured with Gradle for dependency management and build automation, while the Python project utilizes Poetry for package management and environment configuration. This repository provides a structured starting point for new projects. A small documentation on how to use this template project can be found in the [wiki](https://github.com/astrapi69/java-python-poetry-template/wiki).
+A template repository for Java and Python projects using Gradle and Poetry. The Java project is configured with Gradle for dependency management and build automation, while the Python project utilizes Poetry for package management and environment configuration. This repository provides a structured starting point for new projects. A small documentation on how to use this template project can be found in the [wiki](https://github.com/astrapi69/image-merger/wiki).
 
 > Please support this project by starring it on GitHub ⭐
 > If you find this useful, consider sharing it with others!
@@ -96,7 +95,7 @@ poetry update
 ### Gradle Dependency
 
 Replace `${latestVersion}` with the latest version:
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/java-python-poetry-template?style=plastic)](https://search.maven.org/artifact/io.github.astrapi69/java-python-poetry-template)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.astrapi69/image-merger?style=plastic)](https://search.maven.org/artifact/io.github.astrapi69/image-merger)
 
 #### **Define version in `gradle.properties`**
 ```properties
@@ -111,24 +110,24 @@ javaPythonPoetryTemplateVersion = "${latestVersion}"
 #### **Add dependency in `build.gradle`**
 ```groovy
 dependencies {
-    implementation("io.github.astrapi69:java-python-poetry-template:$javaPythonPoetryTemplateVersion")
+    implementation("io.github.astrapi69:image-merger:$javaPythonPoetryTemplateVersion")
 }
 ```
 
 #### **With `libs.versions.toml`**
 ```toml
 [versions]
-java-python-poetry-template-version= "${latestVersion}"
+image-merger-version= "${latestVersion}"
 
 [libraries]
-java-python-poetry-template = { module = "io.github.astrapi69:java-python-poetry-template", version.ref = "java-python-poetry-template-version" }
+image-merger = { module = "io.github.astrapi69:image-merger", version.ref = "image-merger-version" }
 ```
 
 Then use:
 
 ```groovy
 dependencies {
-    implementation libs.java.python.poetry.template
+    implementation libs.image.merger
 }
 ```
 
@@ -139,19 +138,19 @@ dependencies {
 
 ### Maven Dependency
 
-Check out the latest snapshots and releases on [Sonatype Repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~java-python-poetry-template~~~).
+Check out the latest snapshots and releases on [Sonatype Repository](https://oss.sonatype.org/index.html#nexus-search;gav~io.github.astrapi69~image-merger~~~).
 
 #### **Add dependency in `pom.xml`**
 ```xml
 <properties>
-    <java-python-poetry-template.version>${latestVersion}</java-python-poetry-template.version>
+    <image-merger.version>${latestVersion}</image-merger.version>
 </properties>
 
 <dependencies>
     <dependency>
         <groupId>io.github.astrapi69</groupId>
-        <artifactId>java-python-poetry-template</artifactId>
-        <version>${java-python-poetry-template.version}</version>
+        <artifactId>image-merger</artifactId>
+        <version>${image-merger.version}</version>
     </dependency>
 </dependencies>
 ```
@@ -197,6 +196,6 @@ Contributions are welcome! Feel free to fork this repository and submit pull req
 
 ## Contact
 
-For issues and feature requests, visit the [Issues page](https://github.com/astrapi69/java-python-poetry-template/issues).
+For issues and feature requests, visit the [Issues page](https://github.com/astrapi69/image-merger/issues).
 
 ---
