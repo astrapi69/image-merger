@@ -5,13 +5,13 @@ from PIL import Image
 import os
 
 
-def merge_pdf_image(pdf_path, signature_asterios_path, signature_arevik_path, output_pdf_path):
+def merge_pdf_image(pdf_path, signature_right_path, signature_left_path, output_pdf_path):
     """
     Merges signatures as images into the last page of a PDF document.
 
     :param pdf_path: Path to the original PDF file
-    :param signature_asterios_path: Path to Asterios' signature image
-    :param signature_arevik_path: Path to Arevik's signature image
+    :param signature_right_path: Path to right' signature image
+    :param signature_left_path: Path to left's signature image
     :param output_pdf_path: Path to save the output PDF with signatures
     :return: Path to the generated PDF
     """
@@ -25,22 +25,20 @@ def merge_pdf_image(pdf_path, signature_asterios_path, signature_arevik_path, ou
         c = canvas.Canvas(signature_pdf_path, pagesize=A4)
 
         # Load and resize signatures
-        signature_asterios = Image.open(signature_asterios_path).resize((200, 80))
-        signature_arevik = Image.open(signature_arevik_path).resize((200, 80))
+        signature_right = Image.open(signature_right_path).resize((200, 80))
+        signature_left = Image.open(signature_left_path).resize((200, 80))
 
         # Save resized signatures as temporary files
-        signature_asterios_temp = "asterios_signature_temp.png"
-        signature_arevik_temp = "arevik_signature_temp.png"
+        signature_right_temp = "right_signature_temp.png"
+        signature_left_temp = "left_signature_temp.png"
 
-        signature_asterios.save(signature_asterios_temp)
-        signature_arevik.save(signature_arevik_temp)
+        signature_right.save(signature_right_temp)
+        signature_left.save(signature_left_temp)
 
         # Draw signatures onto the new PDF page
-        c.drawImage(signature_asterios_temp, 100, 150, mask='auto')  # Position for Asterios
-        c.drawString(100, 130, "Asterios Raptis")
+        c.drawImage(signature_right_temp, 100, 150, mask='auto')  # Position for right
 
-        c.drawImage(signature_arevik_temp, 300, 150, mask='auto')  # Position for Arevik
-        c.drawString(300, 130, "Arevik Poghosyan")
+        c.drawImage(signature_left_temp, 300, 150, mask='auto')  # Position for left
 
         c.save()
 
@@ -58,8 +56,8 @@ def merge_pdf_image(pdf_path, signature_asterios_path, signature_arevik_path, ou
 
         # Cleanup temporary files
         os.remove(signature_pdf_path)
-        os.remove(signature_asterios_temp)
-        os.remove(signature_arevik_temp)
+        os.remove(signature_right_temp)
+        os.remove(signature_left_temp)
 
         return output_pdf_path
 
