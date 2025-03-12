@@ -1,17 +1,16 @@
-from pypdf import PdfReader, PdfWriter  # Replacing PyPDF2 with pypdf
+from pypdf import PdfReader, PdfWriter, PageObject  # Use pypdf instead of PyPDF2 (if not installed, use poetry add pypdf)
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from PIL import Image
 import os
 
 
-
 def merge_pdf_image(pdf_path, signature_right_path, signature_left_path, output_pdf_path):
     """
-    Merges signatures as images into the last page of a PDF document.
+    Merges signatures as images onto the last page of a PDF document.
 
     :param pdf_path: Path to the original PDF file
-    :param signature_right_path: Path to right' signature image
+    :param signature_right_path: Path to right's signature image
     :param signature_left_path: Path to left's signature image
     :param output_pdf_path: Path to save the output PDF with signatures
     :return: Path to the generated PDF
@@ -21,13 +20,17 @@ def merge_pdf_image(pdf_path, signature_right_path, signature_left_path, output_
         reader = PdfReader(pdf_path)
         writer = PdfWriter()
 
-        # Create a temporary PDF for the signatures
-        signature_pdf_path = "signatures_temp.pdf"
-        c = canvas.Canvas(signature_pdf_path, pagesize=A4)
+        # Get the last page
+        last_page = reader.pages[-1]
+        width, height = last_page.mediabox.width, last_page.mediabox.height
+
+        # Create a temporary overlay PDF for the signatures
+        signature_pdf_path = "signatures_overlay.pdf"
+        c = canvas.Canvas(signature_pdf_path, pagesize=(width, height))
 
         # Load and resize signatures
-        signature_right = Image.open(signature_right_path).resize((200, 80))
-        signature_left = Image.open(signature_left_path).resize((200, 80))
+        signature_right = Image.open(signature_right_path).resize((100, 80))
+        signature_left = Image.open(signature_left_path).resize((100, 80))
 
         # Save resized signatures as temporary files
         signature_right_temp = "right_signature_temp.png"
@@ -36,20 +39,18 @@ def merge_pdf_image(pdf_path, signature_right_path, signature_left_path, output_
         signature_right.save(signature_right_temp)
         signature_left.save(signature_left_temp)
 
-        # Draw signatures onto the new PDF page
-        c.drawImage(signature_right_temp, 100, 150, mask='auto')  # Position for right
-
-        c.drawImage(signature_left_temp, 300, 150, mask='auto')  # Position for left
-
+        # Overlay signatures on the last page at desired positions
+        c.drawImage(signature_right_temp, width - 250, 100, mask='auto')  # Right signature position
+        c.drawImage(signature_left_temp, 50, 100, mask='auto')  # Left signature position
         c.save()
 
-        # Merge original PDF pages
-        for page in reader.pages:
-            writer.add_page(page)
-
-        # Append the signature page
+        # Merge the overlay with the last page
         signature_reader = PdfReader(signature_pdf_path)
-        writer.add_page(signature_reader.pages[0])
+        last_page.merge_page(signature_reader.pages[0])  # Merge the signature overlay onto the last page
+
+        # Add all pages to the writer, replacing the last page with the modified one
+        for i, page in enumerate(reader.pages):
+            writer.add_page(page if i < len(reader.pages) - 1 else last_page)
 
         # Save the final PDF
         with open(output_pdf_path, 'wb') as f:
