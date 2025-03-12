@@ -40,8 +40,8 @@ def merge_pdf_image(pdf_path, signature_right_path, signature_left_path, output_
         signature_left.save(signature_left_temp)
 
         # Overlay signatures on the last page at desired positions
-        c.drawImage(signature_right_temp, width - 250, 100, mask='auto')  # Right signature position
-        c.drawImage(signature_left_temp, 50, 100, mask='auto')  # Left signature position
+        c.drawImage(signature_right_temp, width - 250, 80, mask='auto')  # Right signature position
+        c.drawImage(signature_left_temp, 50, 80, mask='auto')  # Left signature position
         c.save()
 
         # Merge the overlay with the last page
