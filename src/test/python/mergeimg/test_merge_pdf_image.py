@@ -2,7 +2,12 @@ import pytest
 import os
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-from merge_pdf_image import merge_pdf_image
+
+# Ensure the correct module path
+import sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../../../main/python")))
+
+from mergeimg.merge_pdf_image import merge_pdf_image
 
 
 @pytest.fixture

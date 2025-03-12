@@ -1,8 +1,9 @@
-from PyPDF2 import PdfReader, PdfWriter
+from pypdf import PdfReader, PdfWriter  # Replacing PyPDF2 with pypdf
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
 from PIL import Image
 import os
+
 
 
 def merge_pdf_image(pdf_path, signature_right_path, signature_left_path, output_pdf_path):

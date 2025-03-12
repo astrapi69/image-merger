@@ -7,14 +7,15 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
-pypdf2 = "^3.0.1"
 reportlab = "^4.3.1"
 pillow = "^11.1.0"
+pypdf = "^5.3.1"
 
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.5"
-pypdf2 = "^3.0.1"
+pytest-cov = "^4.1.0"
+pytest-mock = "^3.14.0"
 reportlab = "^4.3.1"
 pillow = "^11.1.0"
 
